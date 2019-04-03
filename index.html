@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+               
+            }
+            function allowdrop(ev) {
+             
+                ev.preventDefault();
+            }
+            function drop(ev) {
+           
+                ev.preventDefault();
+                const data = ev.dataTransfer.getData("text");
+                console.log(data);
+                ev.target.appendChild(document.getElementById(data))
+            }
+        </script>
+    
+</head>
+<body>
+    <div id = "root" ></div>
+    <!-- <script  src = "./diff2.js"   ></script> -->
+
+    <img 
+        dragable = "true" 
+        src = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=960469609,1612723655&fm=200&gp=0.jpg"  
+        width = "200"  
+        height = "200"
+        ondragstart="drag(event)"
+        id = "img"
+     />
+    <div id = "wrap" 
+       ondragover = "allowdrop(event)" 
+       ondrop = "drop(event)"
+    ></div>
+    <style>
+        #wrap {
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+    
+</body>
+</html>
